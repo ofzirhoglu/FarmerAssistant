@@ -13,6 +13,7 @@ namespace Entities.Concrete
         public double SaleQuantity { get; set; }
         public double SaleUnitPrice { get; set; }
         public double SaleTotalPrice { get; set; }
+        public string SaleDesc { get; set; }
 
     }
 }
