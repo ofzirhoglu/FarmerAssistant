@@ -3,7 +3,7 @@ using Entities.Concrete;
 
 namespace DataAccess.Abstract
 {
-    public interface IFeildDal : IEntityRepository<Field>
+    public interface IFieldDal : IEntityRepository<Field>
     {
 
     }
