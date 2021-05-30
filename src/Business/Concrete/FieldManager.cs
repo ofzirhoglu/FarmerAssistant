@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using Business.Abstract;
 using Business.Constants;
+using Business.ValidatiionRules.FluentValidation;
+using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
@@ -15,7 +17,7 @@ namespace Business.Concrete
         {
             _fieldDal = fieldDal;
         }
-
+        [ValidationAspect(typeof(FieldValidator))]
         public IResult Add(Field field)
         {
             _fieldDal.Add(field);
