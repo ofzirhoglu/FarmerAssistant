@@ -15,6 +15,10 @@ namespace WebApi.Controllers
             _fieldService = fieldService;
         }
 
+        ///<summary>
+        /// Get field list
+        ///</summary>
+        /// <returns></returns>
         [HttpGet("getall")]
         public IActionResult GetAll()
         {
@@ -25,6 +29,11 @@ namespace WebApi.Controllers
                 : BadRequest(result);
         }
 
+        ///<summary>
+        /// Get field by id
+        ///</summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("getbyId")]
         public IActionResult GetById(int id)
         {
@@ -35,6 +44,24 @@ namespace WebApi.Controllers
                 : BadRequest(result);
         }
 
+        /// <summary>
+        /// Add field
+        /// </summary>
+        /// <remarks>
+        /// Sample request:
+        ///
+        ///     POST /Field
+        ///     {
+        ///        "fieldName":"Field Name"
+        ///        "fieldDesc": "Field Description",
+        ///        "fieldM2": 100
+        ///     }
+        ///
+        /// </remarks>
+        /// <param name="field"></param>
+        /// <returns>A newly created field</returns>
+        /// <response code="201">Returns the newly created field</response>
+        /// <response code="400">If the field is null</response> 
         [HttpPost("add")]
         public IActionResult Add(Field field)
         {
@@ -45,7 +72,12 @@ namespace WebApi.Controllers
                 : BadRequest(result);
         }
 
-        [HttpPost("update")]
+        ///<summary>
+        /// Update the field
+        ///</summary>
+        /// <param name="field"></param>
+        /// <returns></returns>
+        [HttpPut("update")]
         public IActionResult Update(Field field)
         {
             var result = _fieldService.Update(field);
@@ -55,7 +87,12 @@ namespace WebApi.Controllers
                 : BadRequest(result);
         }
 
-        [HttpPost("delete")]
+        ///<summary>
+        /// Delete the field
+        ///</summary>
+        /// <param name="field"></param>
+        /// <returns></returns>
+        [HttpDelete("delete")]
         public IActionResult Delete(Field field)
         {
             var result = _fieldService.Delete(field);
