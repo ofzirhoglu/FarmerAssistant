@@ -1,3 +1,4 @@
+using Core.Entities.Concrete;
 using Entities.Concrete;
 using Microsoft.EntityFrameworkCore;
 
@@ -16,5 +17,8 @@ namespace DataAccess.Concrete.EntityFramework.Contexts
         public DbSet<HarvestType> HarvestTypes { get; set; }
         public DbSet<Sale> Sales { get; set; }
         public DbSet<SaleType> SaleTypes { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<OperationClaim> OperationClaims { get; set; }
+        public DbSet<UserOperationClaim> UserOperationClaims { get; set; }
     }
 }
