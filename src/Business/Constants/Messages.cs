@@ -1,3 +1,5 @@
+using System.Runtime.Serialization;
+
 namespace Business.Constants
 {
     public static class Messages
@@ -11,5 +13,7 @@ namespace Business.Constants
         public static string FieldGetById = "Tarla Id'ye göre getirildi";
 
         public static string FieldNameAlreadyExists = "Bu isimde zaten başka bir tarla var";
+
+        public static string AuthorizationDenied = "Yetkiniz yok";
     }
 }
