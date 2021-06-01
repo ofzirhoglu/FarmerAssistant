@@ -3,6 +3,7 @@ using System.Linq;
 using Business.Abstract;
 using Business.Constants;
 using Business.ValidatiionRules.FluentValidation;
+using BusinessAspects.Autofac;
 using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Business;
 using Core.Utilities.Results;
@@ -20,6 +21,7 @@ namespace Business.Concrete
             _fieldDal = fieldDal;
         }
 
+        [SecuredOperation("field.add,admin")]
         [ValidationAspect(typeof(FieldValidator))]
         public IResult Add(Field field)
         {
