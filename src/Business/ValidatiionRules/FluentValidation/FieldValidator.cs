@@ -11,8 +11,10 @@ namespace Business.ValidatiionRules.FluentValidation
             RuleFor(f => f.FieldName).MinimumLength(3);
             RuleFor(f => f.FieldName).MaximumLength(50);
 
-            RuleFor(f => f.FieldM2).NotEmpty();
+            RuleFor(f => f.FieldDesc).MaximumLength(255);
 
+            RuleFor(f => f.FieldM2).NotEmpty();
+            RuleFor(f => f.FieldM2).GreaterThan(0);
         }
     }
 }
