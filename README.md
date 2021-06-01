@@ -27,8 +27,11 @@ src/
 |   ├── Entities -----------------------> Entities katmanı için tanımlamaların yapıldığı yer
 |   |   ├── Abstract -------------------> Entities için interface'lerin tanımlandığı yer
 |   |   └── Concrete -------------------> Entities için concrete'lerin tanımlandığı yer
-|   └── Utilities ---------------------->  
-|       └── Utilities ------------------>  
+|   └── Utilities ----------------------> Yardımcı araçların tanımlandığ yer
+|   |   ├── Business -------------------> Business için yardımcı araçların tanımlandiğı yer
+|   |   ├── Interceptors ---------------> Interceptor'lar için yardımcı araçların tanımlandığı yer
+|   |   ├── Messages -------------------> Core genelinde kullanılacak sabit mesajların tanımlandığı yer
+|       └── Results --------------------> Result'lar için yardımcı araçların tanımlandiğı yer
 |
 ├── DataAccess -------------------------> Veritabanı işlemlerinin gerçekleşeceği katman  
 |   ├── Abstract -----------------------> Veritabanı için interface'lerin tanımlandığı yer 
