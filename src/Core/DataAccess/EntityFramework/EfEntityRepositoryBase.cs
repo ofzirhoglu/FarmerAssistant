@@ -63,5 +63,13 @@ namespace Core.DataAccess.EntityFramework
                 context.SaveChanges();
             }
         }
+
+        public TEntity GetById(int id)
+        {
+            using (TContext context = new TContext())
+            {
+                return context.Set<TEntity>().Find(id);
+            }
+        }
     }
 }
