@@ -26,10 +26,12 @@ namespace Business.Concrete
         {
             var result = _companyDal.GetById(company.CompanyId);
 
-            return result != null
-                ? new SuccessResult(Messages.CompanyDeleted)
-                : new ErrorResult(Messages.CompanyNotFound);
-
+            if (result == null)
+            {
+                return new ErrorResult(Messages.CompanyNotFound);
+            }
+            _companyDal.Delete(company);
+            return new SuccessResult(Messages.CompanyDeleted);
         }
 
         public IDataResult<List<Company>> GetAll()
@@ -54,9 +56,12 @@ namespace Business.Concrete
         {
             var result = _companyDal.GetById(company.CompanyId);
 
-            return result != null
-                ? new SuccessResult(Messages.CompanyUpdated)
-                : new ErrorResult(Messages.CompanyNotFound);
+            if (result == null)
+            {
+                return new ErrorResult(Messages.CompanyNotFound);
+            }
+            _companyDal.Update(company);
+            return new SuccessResult(Messages.CompanyUpdated);
         }
     }
 }
