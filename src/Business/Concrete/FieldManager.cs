@@ -49,7 +49,7 @@ namespace Business.Concrete
 
         public IDataResult<Field> GetById(int fieldId)
         {
-            return new SuccessDataResult<Field>(_fieldDal.Get(f => f.FieldId == fieldId), Messages.FieldGetById);
+            return new SuccessDataResult<Field>(_fieldDal.GetById(fieldId), Messages.FieldGetById);
         }
 
         public IResult Update(Field field)
