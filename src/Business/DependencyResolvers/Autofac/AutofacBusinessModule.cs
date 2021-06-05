@@ -14,14 +14,18 @@ namespace Business.DependencyResolvers.Autofac
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterType<FieldManager>().As<IFieldService>().SingleInstance();
-            builder.RegisterType<EfFieldDal>().As<IFieldDal>().SingleInstance();
 
             builder.RegisterType<UserManager>().As<IUserService>();
             builder.RegisterType<EfUserDal>().As<IUserDal>();
 
             builder.RegisterType<AuthManager>().As<IAuthService>();
             builder.RegisterType<JwtHelper>().As<ITokenHelper>();
+
+            builder.RegisterType<FieldManager>().As<IFieldService>().SingleInstance();
+            builder.RegisterType<EfFieldDal>().As<IFieldDal>().SingleInstance();
+
+            builder.RegisterType<CompanyManager>().As<ICompanyService>();
+            builder.RegisterType<EfCompanyDal>().As<ICompanyDal>();
 
             // Çalışan uygulama içerisinde ...
             var assembly = System.Reflection.Assembly.GetExecutingAssembly();
