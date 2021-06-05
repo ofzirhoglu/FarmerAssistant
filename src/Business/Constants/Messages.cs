@@ -32,5 +32,18 @@ namespace Business.Constants
         public static string UserDeleted = "Kullanıcı silindi";
 
         public static string UserUpdated = "Kullanıcı güncellendi";
+
+        public static string CompanyAdded = "Firma eklendi";
+
+        public static string CompanyDeleted = "Firma silindi";
+
+        public static string CompanyNotFound = "Firma bulunamadı";
+
+        public static string CompaniesListed = "Firmalar listelendi";
+        public static string CompaniesListNotFound = "Listelenecek firma bulunamadı";
+
+        public static string CompanyGetById = "Firma id'ye göre getirildi";
+
+        public static string CompanyUpdated = "Firma Güncellendi";
     }
 }
