@@ -30,6 +30,9 @@ namespace Business.DependencyResolvers.Autofac
             builder.RegisterType<SaleTypeManager>().As<ISaleTypeService>();
             builder.RegisterType<EfSaleTypeDal>().As<ISaleTypeDal>();
 
+            builder.RegisterType<HarvestTypeManager>().As<IHarvestTypeService>();
+            builder.RegisterType<EfHarvestTypeDal>().As<IHarvestTypeDal>();
+
             // Çalışan uygulama içerisinde ...
             var assembly = System.Reflection.Assembly.GetExecutingAssembly();
             // ... Implemente edilmiş interface leri bul ...
