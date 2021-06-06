@@ -24,14 +24,17 @@ namespace Business.DependencyResolvers.Autofac
             builder.RegisterType<FieldManager>().As<IFieldService>().SingleInstance();
             builder.RegisterType<EfFieldDal>().As<IFieldDal>().SingleInstance();
 
-            builder.RegisterType<CompanyManager>().As<ICompanyService>();
-            builder.RegisterType<EfCompanyDal>().As<ICompanyDal>();
+            builder.RegisterType<CompanyManager>().As<ICompanyService>().SingleInstance();
+            builder.RegisterType<EfCompanyDal>().As<ICompanyDal>().SingleInstance();
 
-            builder.RegisterType<SaleTypeManager>().As<ISaleTypeService>();
-            builder.RegisterType<EfSaleTypeDal>().As<ISaleTypeDal>();
+            builder.RegisterType<SaleTypeManager>().As<ISaleTypeService>().SingleInstance();
+            builder.RegisterType<EfSaleTypeDal>().As<ISaleTypeDal>().SingleInstance();
 
-            builder.RegisterType<HarvestTypeManager>().As<IHarvestTypeService>();
-            builder.RegisterType<EfHarvestTypeDal>().As<IHarvestTypeDal>();
+            builder.RegisterType<SaleManager>().As<ISaleService>().SingleInstance();
+            builder.RegisterType<EfSaleDal>().As<ISaleDal>().SingleInstance();
+
+            builder.RegisterType<HarvestTypeManager>().As<IHarvestTypeService>().SingleInstance();
+            builder.RegisterType<EfHarvestTypeDal>().As<IHarvestTypeDal>().SingleInstance();
 
             // Çalışan uygulama içerisinde ...
             var assembly = System.Reflection.Assembly.GetExecutingAssembly();
