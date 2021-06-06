@@ -1,6 +1,10 @@
 using System.Collections.Generic;
+using System.Linq;
 using Business.Abstract;
 using Business.Constants;
+using Business.ValidatiionRules.FluentValidation;
+using Core.Aspects.Autofac.Validation;
+using Core.Utilities.Business;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
@@ -16,8 +20,15 @@ namespace Business.Concrete
             _companyDal = companyDal;
         }
 
+        [ValidationAspect(typeof(CompanyValidator))]
         public IResult Add(Company company)
         {
+
+            var result = BusinessRules.Run(CheckIfFieldNameExistsForAdd(company.CompanyName));
+            if (result != null)
+            {
+                return result;
+            }
             _companyDal.Add(company);
             return new SuccessResult(Messages.CompanyAdded);
         }
@@ -52,16 +63,37 @@ namespace Business.Concrete
                 : new ErrorDataResult<Company>(result, Messages.CompanyNotFound);
         }
 
+        [ValidationAspect(typeof(CompanyValidator))]
         public IResult Update(Company company)
         {
-            var result = _companyDal.GetById(company.CompanyId);
-
-            if (result == null)
+            var result = BusinessRules.Run(CheckIfFieldNameExistsForUpdate(company.CompanyName, company.CompanyId));
+            if (result != null)
             {
-                return new ErrorResult(Messages.CompanyNotFound);
+                return result;
             }
+
             _companyDal.Update(company);
             return new SuccessResult(Messages.CompanyUpdated);
+        }
+
+        //! Business Rules
+
+        private IResult CheckIfFieldNameExistsForAdd(string companyName)
+        {
+            var result = _companyDal.GetAll(f => f.CompanyName == companyName).Any();
+
+            return result
+            ? new ErrorResult(Messages.FieldNameAlreadyExists)
+            : new SuccessResult();
+        }
+
+        private IResult CheckIfFieldNameExistsForUpdate(string companyName, int companyId)
+        {
+            var result = _companyDal.GetAll(f => f.CompanyName == companyName && f.CompanyId != companyId).Any();
+
+            return result
+            ? new ErrorResult(Messages.FieldNameAlreadyExists)
+            : new SuccessResult();
         }
     }
 }

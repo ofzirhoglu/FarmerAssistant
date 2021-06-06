@@ -21,7 +21,7 @@ namespace Business.Concrete
             _fieldDal = fieldDal;
         }
 
-        [SecuredOperation("field.add,admin")]
+        //[SecuredOperation("field.add,admin")]
         [ValidationAspect(typeof(FieldValidator))]
         public IResult Add(Field field)
         {
@@ -52,6 +52,7 @@ namespace Business.Concrete
             return new SuccessDataResult<Field>(_fieldDal.GetById(fieldId), Messages.FieldGetById);
         }
 
+        [ValidationAspect(typeof(FieldValidator))]
         public IResult Update(Field field)
         {
             var result = BusinessRules.Run(CheckIfFieldNameExistsForUpdate(field.FieldName, field.FieldId));
