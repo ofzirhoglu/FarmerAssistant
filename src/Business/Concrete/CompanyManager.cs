@@ -24,7 +24,7 @@ namespace Business.Concrete
         public IResult Add(Company company)
         {
 
-            var result = BusinessRules.Run(CheckIfFieldNameExistsForAdd(company.CompanyName));
+            var result = BusinessRules.Run(CheckIfCompanyNameExistsForAdd(company.CompanyName));
             if (result != null)
             {
                 return result;
@@ -66,7 +66,7 @@ namespace Business.Concrete
         [ValidationAspect(typeof(CompanyValidator))]
         public IResult Update(Company company)
         {
-            var result = BusinessRules.Run(CheckIfFieldNameExistsForUpdate(company.CompanyName, company.CompanyId));
+            var result = BusinessRules.Run(CheckIfCompanyNameExistsForUpdate(company.CompanyName, company.CompanyId));
             if (result != null)
             {
                 return result;
@@ -78,21 +78,21 @@ namespace Business.Concrete
 
         //! Business Rules
 
-        private IResult CheckIfFieldNameExistsForAdd(string companyName)
+        private IResult CheckIfCompanyNameExistsForAdd(string companyName)
         {
             var result = _companyDal.GetAll(f => f.CompanyName == companyName).Any();
 
             return result
-            ? new ErrorResult(Messages.FieldNameAlreadyExists)
+            ? new ErrorResult(Messages.CompanyNameAlreadyExists)
             : new SuccessResult();
         }
 
-        private IResult CheckIfFieldNameExistsForUpdate(string companyName, int companyId)
+        private IResult CheckIfCompanyNameExistsForUpdate(string companyName, int companyId)
         {
             var result = _companyDal.GetAll(f => f.CompanyName == companyName && f.CompanyId != companyId).Any();
 
             return result
-            ? new ErrorResult(Messages.FieldNameAlreadyExists)
+            ? new ErrorResult(Messages.CompanyNameAlreadyExists)
             : new SuccessResult();
         }
     }
