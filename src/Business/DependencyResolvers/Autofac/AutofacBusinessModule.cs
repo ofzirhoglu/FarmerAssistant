@@ -27,6 +27,9 @@ namespace Business.DependencyResolvers.Autofac
             builder.RegisterType<CompanyManager>().As<ICompanyService>();
             builder.RegisterType<EfCompanyDal>().As<ICompanyDal>();
 
+            builder.RegisterType<SaleTypeManager>().As<ISaleTypeService>();
+            builder.RegisterType<EfSaleTypeDal>().As<ISaleTypeDal>();
+
             // Çalışan uygulama içerisinde ...
             var assembly = System.Reflection.Assembly.GetExecutingAssembly();
             // ... Implemente edilmiş interface leri bul ...
