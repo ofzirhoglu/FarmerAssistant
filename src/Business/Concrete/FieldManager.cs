@@ -25,7 +25,7 @@ namespace Business.Concrete
         [ValidationAspect(typeof(FieldValidator))]
         public IResult Add(Field field)
         {
-            var result = BusinessRules.Run(CheckIfFieldNameExists(field.FieldName));
+            var result = BusinessRules.Run(CheckIfFieldNameExistsForAdd(field.FieldName));
 
             if (result != null)
             {
@@ -54,7 +54,7 @@ namespace Business.Concrete
 
         public IResult Update(Field field)
         {
-            var result = BusinessRules.Run(CheckIfFieldNameExists(field.FieldName));
+            var result = BusinessRules.Run(CheckIfFieldNameExistsForUpdate(field.FieldName, field.FieldId));
 
             if (result != null)
             {
@@ -66,9 +66,18 @@ namespace Business.Concrete
 
         //! Business Rules
 
-        private IResult CheckIfFieldNameExists(string fieldName)
+        private IResult CheckIfFieldNameExistsForAdd(string fieldName)
         {
             var result = _fieldDal.GetAll(f => f.FieldName == fieldName).Any();
+
+            return result
+            ? new ErrorResult(Messages.FieldNameAlreadyExists)
+            : new SuccessResult();
+        }
+
+        private IResult CheckIfFieldNameExistsForUpdate(string fieldName, int fieldId)
+        {
+            var result = _fieldDal.GetAll(f => f.FieldName == fieldName && f.FieldId != fieldId).Any();
 
             return result
             ? new ErrorResult(Messages.FieldNameAlreadyExists)
