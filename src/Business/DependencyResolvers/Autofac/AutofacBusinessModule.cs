@@ -36,6 +36,9 @@ namespace Business.DependencyResolvers.Autofac
             builder.RegisterType<HarvestTypeManager>().As<IHarvestTypeService>().SingleInstance();
             builder.RegisterType<EfHarvestTypeDal>().As<IHarvestTypeDal>().SingleInstance();
 
+            builder.RegisterType<HarvestManager>().As<IHarvestService>().SingleInstance();
+            builder.RegisterType<EfHarvestDal>().As<IHarvestDal>().SingleInstance();
+
             // Çalışan uygulama içerisinde ...
             var assembly = System.Reflection.Assembly.GetExecutingAssembly();
             // ... Implemente edilmiş interface leri bul ...

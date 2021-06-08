@@ -1,11 +1,7 @@
-using System.Runtime.Serialization;
-
 namespace Business.Constants
 {
     public static class Messages
     {
-
-
         public static string AuthorizationDenied = "Yetkiniz yok";
         public static string UserRegistered = "Kullanıcı kaydedildi";
         public static string PasswordError = "Parola hatası";
@@ -69,7 +65,6 @@ namespace Business.Constants
         public static string SalesListNotFound = "Listelenecek satış bulunamadı";
         public static string SalesListedBySalesTypeId = "Satışlar satış tipine göre listelendi";
         public static string SalesListBySalesTypeIdNotFound = "Bu satış tipine göre listelenecek satış bulunamadı";
-
         //! Sale
 
         //! HarvestTypes
@@ -83,5 +78,16 @@ namespace Business.Constants
         public static string HarvestTypesListNotFound = "Listelenecek hasat tipi bulunamadı";
         //! HarvestTypes
 
+        //! HarHarvest
+        public static string HarvestAdded = "Hasat eklendi";
+        public static string HarvestDeleted = "Hasat silindi";
+        public static string HarvestUpdated = "Hasat Güncellendi";
+        public static string HarvestGetById = "Hasat id'ye göre getirildi";
+        public static string HarvestNotFound = "Hasat bulunamadı";
+        public static string HarvestsListed = "Hasatlar listelendi";
+        public static string HarvestsListNotFound = "Listelenecek hasat bulunamadı";
+        public static string HarvestsListedByHarvestsTypeId = "Hasatlar hasat tipine göre listelendi";
+        public static string HarvestsListByHarvestsTypeIdNotFound = "Bu hasat tipine göre listelenecek hasat bulunamadı";
+        //! Harvest
     }
 }
