@@ -59,6 +59,19 @@ namespace Business.Constants
         public static string SaleTypesListNotFound = "Listelenecek satış tipi bulunamadı";
         //! SaleTypes
 
+        //! Sale
+        public static string SaleAdded = "Satış eklendi";
+        public static string SaleDeleted = "Satış silindi";
+        public static string SaleUpdated = "Satış Güncellendi";
+        public static string SaleGetById = "Satış id'ye göre getirildi";
+        public static string SaleNotFound = "Satış bulunamadı";
+        public static string SalesListed = "Satışlar listelendi";
+        public static string SalesListNotFound = "Listelenecek satış bulunamadı";
+        public static string SalesListedBySalesTypeId = "Satışlar satış tipine göre listelendi";
+        public static string SalesListBySalesTypeIdNotFound = "Bu satış tipine göre listelenecek satış bulunamadı";
+
+        //! Sale
+
         //! HarvestTypes
         public static string HarvestTypeAdded = "Hasat tipi eklendi";
         public static string HarvestTypeDeleted = "Hasat tipi silindi";

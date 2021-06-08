@@ -11,8 +11,8 @@ namespace Entities.Concrete
         public int SaleTypeId { get; set; }
         public DateTime SaleDate { get; set; }
         public double SaleQuantity { get; set; }
-        public double SaleUnitPrice { get; set; }
-        public double SaleTotalPrice { get; set; }
+        public decimal SaleUnitPrice { get; set; }
+        public decimal SaleTotalPrice { get; set; }
         public string SaleDesc { get; set; }
 
     }
