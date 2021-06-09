@@ -4,6 +4,7 @@ using Business.Abstract;
 using Business.Constants;
 using Business.ValidatiionRules.FluentValidation;
 using BusinessAspects.Autofac;
+using Core.Aspects.Autofac.Caching;
 using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Business;
 using Core.Utilities.Results;
@@ -23,6 +24,7 @@ namespace Business.Concrete
 
         //[SecuredOperation("field.add,admin")]
         [ValidationAspect(typeof(FieldValidator))]
+        [CacheRemoveAspect("IFieldService.Get")]
         public IResult Add(Field field)
         {
             var result = BusinessRules.Run(CheckIfFieldNameExistsForAdd(field.FieldName));
@@ -36,23 +38,27 @@ namespace Business.Concrete
             return new SuccessResult(Messages.FieldAdded);
         }
 
+        [CacheRemoveAspect("IFieldService.Get")]
         public IResult Delete(Field field)
         {
             _fieldDal.Delete(field);
             return new SuccessResult(Messages.FieldDeleted);
         }
 
+        [CacheAspect]
         public IDataResult<List<Field>> GetAll()
         {
             return new SuccessDataResult<List<Field>>(_fieldDal.GetAll(), Messages.FieldsListed);
         }
 
+        [CacheAspect(10)]
         public IDataResult<Field> GetById(int fieldId)
         {
             return new SuccessDataResult<Field>(_fieldDal.GetById(fieldId), Messages.FieldGetById);
         }
 
         [ValidationAspect(typeof(FieldValidator))]
+        [CacheRemoveAspect("IFieldService.Get")]
         public IResult Update(Field field)
         {
             var result = BusinessRules.Run(CheckIfFieldNameExistsForUpdate(field.FieldName, field.FieldId));
